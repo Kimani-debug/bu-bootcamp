@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashMap;
+
 import org.junit.jupiter.api.BeforeEach; 
  
 public class ContactTest { 
@@ -40,5 +42,19 @@ private Contact contact;
   void toString_containsPhone() {
     Contact c = new Contact("Alan Turing", "555-0001");
     assertTrue(c.toString().contains("555-0001"));
+  }
+
+  @Test
+  void Contact_contactRemoved() {
+    HashMap<String, Contact> c = new HashMap<>(); 
+    c.put("Amelie Feathers", new Contact("Amelie Feathers", "897-6548"));
+    c.put("Eric Lang", new Contact("Eric Lang", "555-6750")); 
+    assertTrue(c.toString().contains("Amelie Feathers"));
+    
+    c.remove("Amelie Feathers");
+    assertFalse(c.toString().contains("Amelie Feathers"));
+    assertTrue(c.toString().contains("{}"));
+
+    
   }
 } 
